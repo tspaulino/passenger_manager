@@ -20,7 +20,7 @@ class HostsParser(Singleton):
         if not os.path.exists(self.hosts_path):
             raise HostsFileNotFound(("The Hosts file (%s) could not be located. Please specify one in " + \
                                     "HOSTALIASES environment variable") % self.hosts_path)
-        self.hosts = {}
+        self.hosts = set()
     
     def load_hosts(self):
         in_passenger = False
@@ -34,5 +34,7 @@ class HostsParser(Singleton):
             
             if in_passenger:
                 host, aliases = [part.strip() for part in line.split(" ", 1)]
-                self.hosts.setdefault(host, [])
-                self.hosts[host] += aliases.split(" ")
+                self.hosts.update(aliases.split(" "))
+
+    def write_hosts(self, hosts=None):
+        pass

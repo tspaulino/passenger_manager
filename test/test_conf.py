@@ -18,8 +18,7 @@ class TestHostsParser(unittest.TestCase):
     
     def testHostsList(self):
         self.hosts_parser.load_hosts()
-        self.assertEqual(len(self.hosts_parser.hosts.keys()), 1)
-        self.assertEqual(len(self.hosts_parser.hosts.values()[0]), 3)
+        self.assertEqual(len(self.hosts_parser.hosts), 3)
 
 
 if __name__ == "__main__":
