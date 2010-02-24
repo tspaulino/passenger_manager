@@ -1,0 +1,2 @@
+
+class HostsFileNotFound(Exception): pass

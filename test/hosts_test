@@ -1,0 +1,6 @@
+#### INIT PASSENGER PANE CONFIGURATION - DO NOT MODIFY
+127.0.0.1 passenger.local passenger2.local
+127.0.0.1 passenger3.local
+#### END OF PASSENGER PANE CONFIGURATION
+
+127.0.0.1 passenger4.local
