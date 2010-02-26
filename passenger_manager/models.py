@@ -23,6 +23,13 @@ class Connection(object):
         if autosync:
             self.sync()
     
+    def get(self, key):
+        return self.connection[key]
+    
+    def find(self, key):
+        if self.connection.has_key(key):
+            return self.connection[key]
+    
     def sync(self):
         self.connection.sync()
     
