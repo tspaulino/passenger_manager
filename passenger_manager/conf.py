@@ -13,8 +13,11 @@ class Singleton(object):
 
 
 class HostsParser(Singleton):
+    HEADER = "#### INIT PASSENGER PANE CONFIGURATION - DO NOT MODIFY\n"
+    FOOTER = "#### END OF PASSENGER PANE CONFIGURATION\n"
+    
     def __init__(self):
-        if sys.platform in ["linux", "darwin"]:
+        if sys.platform in ["linux", "linux2", "darwin"]:
             self.hosts_path = os.environ.get("HOSTALIASES", "/etc/hosts")
         
         if not os.path.exists(self.hosts_path):
@@ -25,11 +28,11 @@ class HostsParser(Singleton):
     def load_hosts(self):
         in_passenger = False
         for line in open(self.hosts_path, "r"):
-            if line == "#### INIT PASSENGER PANE CONFIGURATION - DO NOT MODIFY\n":
+            if line == self.HEADER:
                 in_passenger = True
                 continue
                 
-            if line == "#### END OF PASSENGER PANE CONFIGURATION\n":
+            if line == self.FOOTER:
                 break
             
             if in_passenger:
